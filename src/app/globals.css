@@ -1,0 +1,212 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Removed explicit body font-family, Tailwind will handle this via layout.tsx and tailwind.config.ts */
+
+@layer base {
+  :root {
+    --background: 0 0% 98%; /* Off-white, very light gray - used by components like Navbar/Footer */
+    --foreground: 0 0% 10%; /* Default text color for light mode */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 0 0% 10%; /* Dark Gray for text on cards */
+
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 0 0% 10%; /* Dark Gray */
+
+    --primary: 249 66% 63%; /* #7360DF */
+    --primary-foreground: 0 0% 98%; /* Light Gray / White */
+
+    --secondary: 0 0% 85%; /* A slightly darker gray for secondary elements */
+    --secondary-foreground: 0 0% 10%; /* Dark Gray */
+
+    --muted: 0 0% 90%; /* Lighter gray for muted elements */
+    --muted-foreground: 0 0% 40%; /* Medium Gray for muted text */
+
+    --accent: 172 58% 44%; /* Teal, for interactive elements - kept from original theme */
+    --accent-foreground: 0 0% 98%; /* Light Gray / White */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 80%; /* Adjusted border color */
+    --input: 0 0% 80%; /* Adjusted input background */
+    --ring: 249 66% 63%; /* Primary color for rings - #7360DF */
+
+    --radius: 0.5rem;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* Sidebar specific variables - can be kept or adjusted if sidebar is used */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 2%; /* Even darker background - used by components like Navbar/Footer */
+    --foreground: 0 0% 98%; /* Default text color for dark mode is already light */
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 249 66% 63%; /* #7360DF */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 172 58% 44%; /* Teal */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 249 66% 63%; /* #7360DF */
+    
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Ensure body takes full height for fixed background */
+    min-height: 100vh;
+    position: relative; /* For z-indexing context if needed */
+  }
+}
+
+/* Animated Wavy Gradient Background */
+.animated-gradient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10; /* Behind all content */
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.25), /* Lighter primary */
+    hsl(var(--accent) / 0.20),  /* Lighter accent (now Teal) */
+    hsl(var(--primary) / 0.15), /* Even lighter primary */
+    hsl(270 70% 80% / 0.20)   /* A much lighter, more transparent purple shade for variety */
+  );
+  background-size: 400% 400%;
+  animation: waveAnimation 20s ease infinite;
+}
+
+@keyframes waveAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Bubbles */
+.bubbles-container {
+  position: fixed;
+  inset: 0;
+  z-index: -9; /* Behind content, above gradient */
+  pointer-events: none; /* Allow clicks to pass through */
+  overflow: hidden; /* Prevent scrollbars if bubbles go off-screen momentarily */
+}
+
+.bubble-particle {
+  position: absolute;
+  bottom: -50px; /* Start off-screen */
+  border-radius: 50%;
+  background-color: hsl(var(--primary-foreground) / 0.15); /* Light, semi-transparent */
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite; /* Bubbles will loop if not removed by JS */
+  opacity: 0; /* Start invisible, animation will fade it in */
+  box-shadow: 0 0 5px hsl(var(--primary-foreground) / 0.1), 0 0 10px hsl(var(--primary-foreground) / 0.05);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.2); /* Float up beyond the viewport */
+    opacity: 0;
+  }
+}
+
+/* Footer Diagonal Background Lines */
+.footer-diagonal-bg-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* Sits behind the footer content */
+  overflow: hidden; /* Important for rotated pseudo-elements */
+}
+
+.footer-diagonal-bg-lines::before,
+.footer-diagonal-bg-lines::after {
+  content: '';
+  position: absolute;
+  left: -25%; /* Extend beyond viewport to ensure full coverage when rotated */
+  right: -25%;
+  height: 1.5rem; /* This is the MAX thickness of the line */
+  background-image: linear-gradient(to right, hsl(300 70% 60% / 0.7), hsl(260 70% 60% / 0.7), hsl(180 70% 50% / 0.7)); /* Pink/Magenta -> Purple -> Cyan with 70% opacity */
+  transform: rotate(-3deg); /* Negative rotation for upward slope from left */
+  transform-origin: bottom left; /* Rotate from bottom left */
+  /* Clip-path to make the line appear to start thin and end thick */
+  clip-path: polygon(0% 45%, 100% 0%, 100% 100%, 0% 55%);
+}
+
+.footer-diagonal-bg-lines::before {
+  /* This will be the upper line */
+  bottom: 0.1rem; /* Make it very close to the lower line's starting point */
+}
+
+.footer-diagonal-bg-lines::after {
+  /* This will be the lower line */
+  bottom: 0rem; 
+}
+
+/* New Footer Top Horizontal Gradient Lines */
+.footer-top-horizontal-line-upper,
+.footer-top-horizontal-line-lower {
+  height: 2px; /* Slim lines */
+}
+
+.footer-top-horizontal-line-upper {
+  margin-bottom: 0.25rem; /* 4px space between lines */
+  background-image: linear-gradient(to right, hsl(260, 85%, 60%), hsl(300, 85%, 65%)); /* Vibrant Purple -> Magenta */
+}
+
+.footer-top-horizontal-line-lower {
+  background-image: linear-gradient(to right, hsl(180, 70%, 50%), hsl(200, 80%, 55%)); /* Teal/Cyan -> Bright Blue */
+}

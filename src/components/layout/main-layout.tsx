@@ -32,8 +32,8 @@ export function MainLayout({ children }: MainLayoutProps) {
           <div className="container mx-auto pb-8 relative z-10"> {/* Main content layer, removed pt-12 */}
             <div className="grid md:grid-cols-2 gap-10 items-start mb-10">
               <div>
-                <p className="font-parisienne text-4xl bg-rainbow-text-gradient text-transparent bg-clip-text mb-0">Jaro Education</p>
-                <p className="font-parisienne text-lg text-gray-300 mt-0">EXPLORE NEW SKILLS</p>
+                <p className="font-signika-negative text-4xl bg-rainbow-text-gradient text-transparent bg-clip-text mb-0">Jaro Education</p>
+                <p className="font-signika-negative text-lg text-gray-300 mt-0">EXPLORE NEW SKILLS</p>
                 <div className="mt-2 flex items-center space-x-2 justify-start">
                   {/* Links previously here are now in hamburger menu */}
                 </div>

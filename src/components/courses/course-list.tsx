@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useMemo } from 'react';
@@ -30,7 +29,7 @@ export function CourseList({ courses, showFilters = true }: CourseListProps) {
   }, [courses, searchTerm, selectedCategory, showFilters]);
 
   return (
-    <div className="py-8"> {/* Removed 'container' class */}
+    <div className="py-8 animate-fade-in-up"> {/* Removed 'container' class */}
       {showFilters && (
         <CourseFilters
           searchTerm={searchTerm}

@@ -1,4 +1,3 @@
-
 import { CourseList } from '@/components/courses/course-list';
 import { HeroSection } from '@/components/home/hero-section';
 import { mockCourses, homePageFaqData } from '@/lib/mock-data'; // Import homePageFaqData
@@ -41,7 +40,7 @@ export default function HomePage() {
         <div className="my-4 md:my-6 h-[3px] rounded-full bg-rosemary-purple-gradient" />
       </div>
 
-      <section id="industry-oriented-courses" className="py-12 md:py-16">
+      <section className="py-12 md:py-16 animate-fade-in-up">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10 tracking-tight">
             Industry Oriented Free Online Courses

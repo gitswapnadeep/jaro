@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -26,7 +25,7 @@ export function FaqSection({ faqItems }: FaqSectionProps) {
   }
 
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-12 md:py-16 animate-fade-in-up">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-10 tracking-tight">
           Frequently Asked Questions

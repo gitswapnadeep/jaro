@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 
 export function HeroSection() {
   return (
-    <section className="py-24 md:py-36 bg-primary-gradient">
+    <section className="py-24 md:py-36 bg-primary-gradient animate-fade-in-up">
       <div className="container mx-auto md:flex md:items-center md:gap-12">
         {/* Text Content Column */}
         <div className="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
@@ -20,11 +20,11 @@ export function HeroSection() {
           <Button
             asChild
             size="lg"
-            className="group bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg transform hover:scale-105 transition-transform duration-300"
+            className="group bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 shadow-lg transform hover:scale-105 transition-transform duration-300 rounded-full"
           >
             <Link href="/#all-courses">
               Explore Courses
-              <ArrowRight className="ml-2 h-5 w-5 text-accent-foreground transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="ml-2 h-5 w-5 text-white transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>

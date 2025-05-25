@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from 'react';
@@ -24,7 +23,7 @@ export function SuccessStoriesSection() {
   };
 
   return (
-    <section className="py-12 md:py-16"> {/* Removed bg-background */}
+    <section className="py-12 md:py-16 animate-fade-in-up"> {/* Removed bg-background */}
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-4 text-foreground">
           Success Stories from Jaro Education
